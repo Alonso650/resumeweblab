@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {title: "Update " + skill.skill_name}); %>
+
+<h1>Update <%= skill.skill_name%></h1>
+<form action="/skill/update" method="get">
+    <input type="hidden" id="skill_id" name="skill_id" value="<%= skill.skill_id %>">
+    Skill Name: <input id="skill_name" name="skill_name" type="text" value="<%= skill.skill_name%>"/>
+    <br/>
+    <br/>
+    Skill Description: <br/>
+    <select id="skill_id" name="skill_id" multiple="multiple">
+        <% for(var i=0; skill.length >i; i++) {
+            var selected = "";
+
+            if(skill[i].skill_id != null) {
+                selected = "selected";
+            }
+        %>
+        <option value="<%= skill[i].skill_id %>"<%= selected %> ><%=skill[i].description %></option>
+        <% } %>
+    </select>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#skill_id').multiselect();
+        });
+    </script>
+
+    <br/>
+
+    <input type="submit" />
+</form>
+
+<%- include("../includes/footer.ejs"); %>
+</html>

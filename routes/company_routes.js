@@ -4,6 +4,8 @@ var company_dal = require('../model/company_dal');
 var address_dal = require('../model/address_dal');
 
 
+
+
 // View All companys
 router.get('/all', function(req, res) {
     company_dal.getAll(function(err, result){
@@ -16,6 +18,9 @@ router.get('/all', function(req, res) {
     });
 
 });
+
+
+
 
 // View the company for the given id
 router.get('/', function(req, res){
@@ -34,6 +39,9 @@ router.get('/', function(req, res){
     }
 });
 
+
+
+
 // Return the add a new company form
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
@@ -47,9 +55,12 @@ router.get('/add', function(req, res){
     });
 });
 
+
+
+
 // View the company for the given id
 router.get('/insert', function(req, res){
-    // simple validation
+    // simple validationr
     if(req.query.company_name == null) {
         res.send('Company Name must be provided.');
     }
@@ -71,6 +82,9 @@ router.get('/insert', function(req, res){
     }
 });
 
+
+
+
 router.get('/edit', function(req, res){
     if(req.query.company_id == null) {
         res.send('A company id is required');
@@ -82,6 +96,9 @@ router.get('/edit', function(req, res){
     }
 
 });
+
+
+
 
 router.get('/edit2', function(req, res){
    if(req.query.company_id == null) {
@@ -97,11 +114,17 @@ router.get('/edit2', function(req, res){
 
 });
 
+
+
+
 router.get('/update', function(req, res) {
     company_dal.update(req.query, function(err, result){
        res.redirect(302, '/company/all');
     });
 });
+
+
+
 
 // Delete a company for the given company_id
 router.get('/delete', function(req, res){

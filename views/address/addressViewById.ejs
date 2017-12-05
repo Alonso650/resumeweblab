@@ -1,0 +1,14 @@
+<%- include("../includes/header.ejs", {title:"Address(es) - " + result[0].address}); %>
+    <h1>Address</h1>
+    <u1>
+        <li>Address: <%= result[0].address %></li>
+        <ul>
+            <% for(var i=0; result.length > i; i++) { %>
+            <li><%= result[i].street + ', ' + result[i].zip_code %></li>
+            <% } %>
+        </ul>
+    </u1>
+
+<a href="/address/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>
