@@ -23,12 +23,12 @@ exports.getById = function(address_id, callback) {
     });
 };
 
-exports.insert = function(params, callback) {
-    var query = 'INSERT INTO address (street) VALUES (?)';
+exports.insert = function(params, params2, callback) {
+    var query = 'INSERT INTO address (street, zip_code) VALUES (?)';
 
-    var queryData = [params.street];
+    var queryData = [params.street, params2.zip_code];
 
-    connection.query(query, params.street, function(err, result) {
+    connection.query(query, params.street, params2.zip_code, function(err, result) {
         var address_id = result.insertId;
 
         var query = 'INSERT INTO address(address_id) VALUES ?';

@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var db = require('../../../Desktop/resumeweblab/model/db_connection.js');
+var db = require('./db_connection.js');
 
 var connection = mysql.createConnection(db.config);
 

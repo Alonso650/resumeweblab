@@ -34,11 +34,22 @@ router.get('/', function(req, res) {
 });
 
 router.get('/add', function(req, res) {
+    address_dal.getAll(function(err, result) {
+        if(err) {
+            res.send(err);
+        }
+        else {
+            res.render('address/addressAdd', {'address': result});
+        }
+    });
+});
+
+router.get('/insert', function(req, res) {
     if(req.query.street == null){
         res.send('An address must be provided.');
     }
-    else if(req.query.address_id == null) {
-        res.send('At least one address must be selected');
+    else if(req.query.zip_code == null) {
+        res.send('zip code must be provided');
     }
     else {
         address_dal.insert(req.query, function(err, result) {
@@ -59,7 +70,7 @@ router.get('/edit', function(req, res) {
     }
     else {
         address_dal.edit(req.query.address_id, function(err, result) {
-            res.render('address/addressUpdate', {address: result[0][0]});
+            res.render('address/addressUpdate', {address: result[0][0], zip_code: result[1]});
         });
     }
 });
@@ -69,10 +80,10 @@ router.get('/edit2', function(req, res) {
         res.send('A address id is required');
     }
     else {
-        address_dal.getById(req.query.address_id, function(err, company) {
-            address_dal.getAll(function(err, address) {
-                res.render('address/addressUpdate', {address: address[0]});
-            });
+        address_dal.getById(req.query.address_id, function(err, address) {
+       //     address_dal.getAll(function(err, address) {
+                res.render('address/addressUpdate', {address: address[0], zip_code: zip_code});
+         //   });
         });
     }
 });
