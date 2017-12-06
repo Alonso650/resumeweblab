@@ -7,8 +7,9 @@
     <br/>
     <br/>
     Skill Description: <br/>
+
     <select id="skill_id" name="skill_id" multiple="multiple">
-        <% for(var i=0; skill.length >i; i++) {
+        <% for(var i=0; description.length >i; i++) {
             var selected = "";
 
             if(skill[i].skill_id != null) {
@@ -28,6 +29,7 @@
     <br/>
 
     <input type="submit" />
+
 </form>
 
 <%- include("../includes/footer.ejs"); %>

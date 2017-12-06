@@ -11,7 +11,7 @@ exports.getAll = function(callback) {
     });
 };
 
-exports.getById = function(skill_id) {
+exports.getById = function(skill_id, callback) {
     var query = 'SELECT skill_name, description FROM skill ' +
                'WHERE skill_id = ?';
     var queryData = [skill_id];
@@ -21,7 +21,8 @@ exports.getById = function(skill_id) {
         callback(err, result);
     });
 };
-
+/*
+original one
 exports.insert = function(params, callback) {
 
     var query = 'INSERT INTO skill (skill_name) VALUES (?)';
@@ -30,6 +31,8 @@ exports.insert = function(params, callback) {
 
     connection.query(query, params.skill_name, function(err, result) {
         var skill_id = result.insertId;
+
+        var query = 'INSERT INTO skill(skill_id) VALUES ?';
 
         var skillData = [];
         if(params.skill_id.constructor === Array) {
@@ -46,6 +49,32 @@ exports.insert = function(params, callback) {
         });
     });
 
+};
+*/
+
+exports.insert = function(params, callback) {
+    var query = 'INSERT INTO skill (skill_name, description) VALUES (?)';
+
+    var queryData = [params.skill_name, params2.description];
+
+    connection.query(query, params.skill_name, params2.description, function(err, result) {
+        var skill_id = result.insertId;
+
+        var query = 'INSERT INTO skill (skill_id) ?';
+
+        var skillData = [];
+        if(params.skill_id.constructor === Array) {
+            for(var i = 0; i < params.skill_id.length; i++){
+                skillData.push([skill_id, params.skill_id[i]]);
+            }
+        }
+        else{
+            skillData.push([skill_id, params.skill_id]);
+        }
+        connection.query(query, [skillData], function(err, result) {
+            callback(err, result);
+        });
+    });
 };
 
 exports.delete = function(skill_id, callback) {

@@ -31,7 +31,7 @@ exports.insert = function(params, callback) {
     connection.query(query, params.street, function(err, result) {
         var address_id = result.insertId;
 
- //       var query = 'INSERT INTO address(address_id) VALUES ?';
+        var query = 'INSERT INTO address(address_id) VALUES ?';
 
         var addressData = [];
         if(params.address_id.constructor === Array) {

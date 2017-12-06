@@ -14,12 +14,13 @@ router.get('/all', function(req, res) {
 
 });
 
+// View the skill for the given id
 router.get('/', function(req, res){
     if(req.query.skill_id == null) {
         res.send('skill_id is null');
     }
     else {
-        skill_dal.getById(req.query.skill_id, function(err, result) {
+        skill_dal.getById(req.query.skill_id, function(err,result) {
             if(err) {
                 res.send(err);
             }
@@ -30,12 +31,27 @@ router.get('/', function(req, res){
     }
 });
 
+
+// Return the add a new skill form
 router.get('/add', function(req, res) {
+    skill_dal.getAll(function(err, result) {
+        if(err) {
+            res.send(err);
+        }
+        else {
+            res.render('skill/skillAdd', {'skill': result});
+        }
+    });
+});
+
+
+// View the skill for the given id
+router.get('/insert', function(req, res) {
     if(req.query.skill_name == null) {
         res.send('A type of skill must be provided.');
     }
-    else if(req.query.skill_id == null) {
-        res.send('At least one skill must be selected');
+    else if(req.query.description == null) {
+        res.send('Description must provided');
     }
     else {
         skill_dal.insert(req.query, function(err, result) {
@@ -44,34 +60,50 @@ router.get('/add', function(req, res) {
                 res.send(err);
             }
             else {
-                res.redirect(302, 'skill/all');
+                res.redirect(302, '/skill/all');
             }
         });
     }
 });
 
 router.get('/edit', function(req, res) {
-    if(req.query.skill_id = null) {
+    if(req.query.skill_id == null) {
         res.send('A skill_id is required');
     }
     else {
         skill_dal.edit(req.query.skill_id, function(err, result) {
-            res.render('skill/skillUpdate', {skill: result[0][0]});
+            res.render('skill/skillUpdate', {skill: result[0][0], description: result[1]});
         });
     }
 });
-
+/*
 router.get('/edit2', function(req, res) {
     if(req.query.skill_id == null) {
         res.send('A skill id is required');
     }
     else {
         skill_dal.getById(req.query.skill_id, function(err, skill) {
-            skill.getById(function(err, address) {
-                res.render('skill/skillUpdate', {skill:[0]})
+            skill_dal.getAll(function(err, skill) {
+                res.render('skill/skillUpdate', {skill: skill[0]})
             });
         });
     }
+});
+
+*/
+
+router.get('/edit2', function(req, res){
+    if(req.query.skill_id == null) {
+        res.send('A skill id is required');
+    }
+    else {
+        skill_dal.getById(req.query.skill_id, function(err, skill){
+          //  skill_dal.getAll(function(err, skill) {
+                res.render('skill/skillUpdate', {skill: skill[0], description: description});
+           // });
+        });
+    }
+
 });
 
 router.get('/update', function(req, res) {
