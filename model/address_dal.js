@@ -13,16 +13,18 @@ exports.getAll = function(callback) {
 };
 
 exports.getById = function(address_id, callback) {
-    var query = 'SELECT street, zip_code FROM address  ' +
+    var query = 'SELECT street, zip_code FROM address ' +
         'WHERE address_id = ?';
     var queryData = [address_id];
     console.log(query);
 
-    connection.query(query, queryData, function(err, result) {
+    connection.query(query, [queryData], function(err, result) {
         callback(err, result);
     });
 };
 
+/*
+original
 exports.insert = function(params, params2, callback) {
     var query = 'INSERT INTO address (street, zip_code) VALUES (?)';
 
@@ -48,16 +50,31 @@ exports.insert = function(params, params2, callback) {
         });
     });
 };
+*/
+
+exports.insert = function(params, callback){
+    var query = 'INSERT INTO address (street, zip_code) VALUES (?)';
+    var queryData = [params.street, params.zip_code];
+
+    connection.query(query,[queryData], function(err, result){
+        callback(err, result);
+    });
+};
+
+
+
 
 exports.delete = function(address_id, callback) {
     var query = 'DELETE FROM address WHERE address_id = ?';
     var queryData = [address_id];
 
-    connection.query(query, queryData, function(err, result) {
+    connection.query(query, [queryData], function(err, result) {
         callback(err, result);
     });
 };
-/*
+
+
+
 var addressInsert = function(address_id, addressIdArray, callback) {
     var query = 'INSERT INTO address (address_id) VALUES ?';
 
@@ -75,7 +92,7 @@ var addressInsert = function(address_id, addressIdArray, callback) {
     });
 };
 
-//module.exports.addressInsert = addressInsert;
+module.exports.addressInsert = addressInsert;
 
 var addressDeleteAll = function(address_id, callback) {
     var query = 'DELETE FROM address WHERE address_id = ?';
@@ -89,8 +106,8 @@ var addressDeleteAll = function(address_id, callback) {
 module.exports.addressDeleteAll = addressDeleteAll;
 
 exports.update = function(params, callback) {
-    var query = 'UPDATE address SET street = ? WHERE address_id = ?';
-    var queryData = [params.street, params.address_id];
+    var query = 'UPDATE address SET street = ?, zip_code = ? WHERE address_id = ?';
+    var queryData = [params.street, params.zip_code, params.address_id];
 
     connection.query(query, queryData, function(err, result) {
         addressDeleteAll(params.address_id, function(err, result) {
@@ -106,7 +123,7 @@ exports.update = function(params, callback) {
         });
     });
 };
-*/
+
 exports.edit = function(address_id, callback) {
     var query = 'CALL address_getinfo(?)';
     var queryData = [address_id];

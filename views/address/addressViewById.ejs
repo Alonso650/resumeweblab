@@ -1,7 +1,7 @@
-<%- include("../includes/header.ejs", {title:"Address(es) - " + result[0].address}); %>
+<%- include("../includes/header.ejs", {title:"Address(es) - " + result[0].street}); %>
     <h1>Address</h1>
     <u1>
-        <li>Address: <%= result[0].address %></li>
+        <li>Address: <%= result[0].street %></li>
         <ul>
             <% for(var i=0; result.length > i; i++) { %>
             <li><%= result[i].street + ', ' + result[i].zip_code %></li>

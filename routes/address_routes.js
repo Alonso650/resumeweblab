@@ -16,7 +16,11 @@ router.get('/all', function(req, res) {
 
 });
 
-router.get('/', function(req, res) {
+
+
+
+// View the company for the given id
+router.get('/', function(req, res){
     if(req.query.address_id == null) {
         res.send('address_id is null');
     }
@@ -29,7 +33,6 @@ router.get('/', function(req, res) {
                 res.render('address/addressViewById', {'result': result});
             }
         });
-
     }
 });
 
@@ -58,7 +61,7 @@ router.get('/insert', function(req, res) {
                 res.send(err);
             }
             else{
-                res.redirect(302, 'address/all');
+                res.redirect(302, '/address/all');
             }
         });
     }
@@ -70,7 +73,7 @@ router.get('/edit', function(req, res) {
     }
     else {
         address_dal.edit(req.query.address_id, function(err, result) {
-            res.render('address/addressUpdate', {address: result[0][0], zip_code: result[1]});
+            res.render('address/addressUpdate', {address: result[0][0] ,street: result[1]});
         });
     }
 });
@@ -81,9 +84,9 @@ router.get('/edit2', function(req, res) {
     }
     else {
         address_dal.getById(req.query.address_id, function(err, address) {
-       //     address_dal.getAll(function(err, address) {
-                res.render('address/addressUpdate', {address: address[0], zip_code: zip_code});
-         //   });
+            address_dal.getAll(function(err, address) {
+                res.render('address/addressUpdate', {address: address});
+            });
         });
     }
 });
