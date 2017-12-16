@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {title:"Volunteer - View All"}); %>
+
+<h1>Volunteers</h1>
+<a href="/volunteer/add">Add A New Volunteer</a> <br />
+<br />
+<font color="limegreen"> This table is used to keep track of our volunteers from the various animal shelters
+ that we are partnered up. Clicking on the links will display their information such as
+  his/her first name, last name, age, the shelter they are helping out, which animal they
+  are assigned to take care of and the date he/she started to volunteer. The column next
+  to the links have an edit and delete button. We have these links in case we want to update
+  their information or yearly we would delete a volunteer entry if he/she hasn't shown up in
+  a very long time or if a mistake was made when inputting the data information.</font>
+<br/>
+<br/>
+<table border="1">
+    <tr><th>Our Volunteers</th><th>Actions</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/volunteer/?volunteer_id=<%= result[i].volunteer_id %>"><%= result[i].volunteer_first_name %></a></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='/volunteer/edit/?volunteer_id=<%= result[i].volunteer_id %>'">Edit</button>
+            <form action="/volunteer/delete/" style="display:inline;">
+                <input type="hidden" name="volunteer_id" id="volunteer_id" value="<%= result[i].volunteer_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+
+        </td>
+    </tr>
+    <% } %>
+</table>
+<br/>
+
+<a href="/">Back to the Home Page</a> <br/>
+<%- include("../includes/footer.ejs"); %>

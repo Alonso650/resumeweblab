@@ -1,0 +1,19 @@
+<%- include("../includes/header.ejs", {title:"Clients - " + result[0].client_first_name}); %>
+<h1>Clients</h1>
+<ul>
+    <li>First Name: <%= result[0].client_first_name %></li>
+    <li>Last Name: <%= result[0].client_last_name %></li>
+    <li>Phone Number: <%= result[0].phone_number %></li>
+    <li>Adopting/Surrendering: <%= result[0].adopt_surrender %></li>
+    <li>Animal(s):
+        <ul>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <li><%= result[i].animal_name%></li>
+            <% } %>
+        </ul>
+    </li>
+</ul>
+
+<a href="/client/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

@@ -6,10 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var company = require('./routes/company_routes');
-var school = require('./routes/school_routes');
-var address = require('./routes/address_routes');
-var skill = require('./routes/skill_routes');
+var shelter = require('./routes/shelter_routes');
+var client = require('./routes/client_routes');
+var volunteer = require('./routes/volunteer_routes');
+var animal = require('./routes/animal_routes');
+var about = require('./routes/about');
+
+
 //var account = require('.routes/account_routes');
 
 var app = express();
@@ -28,11 +31,15 @@ app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/company', company);
-app.use('/address', address);
-app.use('/school', school);
-app.use('/skill', skill);
-//app.use('/account',account);
+app.use('/shelter', shelter);
+app.use('/client', client);
+app.use('/volunteer', volunteer);
+app.use('/animal', animal);
+app.use('/about', about);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

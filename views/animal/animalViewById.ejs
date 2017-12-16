@@ -1,0 +1,22 @@
+<%- include("../includes/header.ejs", {title:"Animals - "}); %>
+<h1>Animal</h1>
+<u1>
+    <li>Name: <%= result[0].animal_name %></li>
+    <li>Age: <%= result[0].age %></li>
+    <li>Gender: <%= result[0].gender %></li>
+    <li>Date Entered: <%= result[0].date_entered %></li>
+
+
+
+    <li>Shelter it belongs to:
+        <ul>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <li><%= result[i].shelter_name%></li>
+            <% }%>
+        </ul>
+    </li>
+</u1>
+
+<a href="/animal/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

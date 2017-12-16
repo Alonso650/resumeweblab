@@ -1,0 +1,46 @@
+<%- include("../includes/header.ejs", {title: "Update " + client.client_first_name}); %>
+
+<h1>Update <%= client.first_name%></h1>
+<form action="/client/update" method="get">
+    <input type="hidden" id="client_id" name="client_id" value="<%= client.client_id %>">
+    First Name: <input id="client_first_name" name="client_first_name" type="text" value="<%= client.client_first_name%>"/>
+    <br/>
+    Last Name: <input id="client_last_name" name="client_last_name" type="text" value="<%= client.client_last_name%>"/>
+    <br/>
+    Phone Number: <input id="phone_number" name="phone_number" type="text" value="<%= client.phone_number%>"/>
+    <br/>
+    Adopting/Surrendering: <input id="adopt_surrender" name="adopt_surrender" type="text" value="<%=client.adopt_surrender%>"/>
+
+    <br />
+    <br />
+    Animal(s) <br />
+    <select id="animal_id" name="animal_id" multiple="multiple">
+        <% for(var i=0; animal.length > i; i++ ) {
+            var selected = "";
+
+            if(animal[i].client_id != null) {
+                selected = "selected";
+            }
+        %>
+        <option value="<%= animal[i].animal_id %>" <%= selected %> ><%= animal[i].animal_name %></option>
+        <% } %>
+    </select>
+<br/>
+
+
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#animal_id').multiselect();
+        });
+    </script>
+
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>
+
+</html>

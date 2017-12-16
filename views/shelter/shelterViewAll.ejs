@@ -1,0 +1,35 @@
+<%- include("../includes/header.ejs", {title:"Shelters - View All"}); %>
+
+<h1>Shelters</h1>
+<a href="/shelter/add">Add New Shelter</a> <br />
+
+<br />
+<font color="#006400"> This part of our website shows a list of all of our shelters that have joined our website.
+ In the first column you will find the names of the shelters and when clicking on the hyperlink
+ , will display the location of the animal shelter. The right column gives two options, to
+ either edit the name of the animal shelter and location or to delete the animal shelter data.
+ Reasons to have this are in case the animal shelter decides to not be associated with the website
+ or if it got closed down.</font>
+<br/>
+<br/>
+<table border="1">
+    <tr><th>Shelter Name</th><th>Actions</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/shelter/?shelter_id=<%= result[i].shelter_id %>"><%= result[i].shelter_name %></a></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='/shelter/edit/?shelter_id=<%= result[i].shelter_id %>'">Edit</button>
+            <form action="/shelter/delete/" style="display:inline;">
+                <input type="hidden" name="shelter_id" id="shelter_id" value="<%= result[i].shelter_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+
+        </td>
+    </tr>
+    <% } %>
+</table>
+<br/>
+
+<a href="/">Back to the Home Page</a> <br/>
+
+<%- include("../includes/footer.ejs"); %>

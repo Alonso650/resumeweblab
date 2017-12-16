@@ -1,0 +1,37 @@
+<%- include("../includes/header.ejs", {title:"Animals - View All"}); %>
+
+<h1>Animals</h1>
+<a href="/animal/add">Add New Animal</a> <br />
+
+<br />
+<font color="#2e8b57"> This is where we keep track of our many aniimals from our various shelters. In the first
+ column under the names, you will see the names of the animals. The hyperlink will take you
+ to a new page and it will display the information of the animal such as the name, gender,
+ age, and the date the animal entered the shelter. The location of the shelter is also posted
+ along with the rest of the information. The next column gives an option to either edit the animal
+ entry or to delete it. We have these options incase the animal got transferred to another shelter
+ or if it found a new home we can just delete the entry.</font>
+<br/>
+<br/>
+<table border="1">
+    <tr><th>Name of the Animal</th><th>Actions</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/animal/?animal_id=<%= result[i].animal_id %>"><%= result[i].animal_name %></a></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='/animal/edit/?animal_id=<%= result[i].animal_id %>'">Edit</button>
+            <form action="/animal/delete/" style="display:inline;">
+                <input type="hidden" name="animal_id" id="animal_id" value="<%= result[i].animal_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+
+        </td>
+    </tr>
+    <% } %>
+</table>
+
+<br/>
+<a href="/">Back to the Home Page</a> <br/>
+
+
+<%- include("../includes/footer.ejs"); %>

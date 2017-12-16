@@ -1,0 +1,29 @@
+<%- include("../includes/header.ejs", {title:"Volunteers "}); %>
+<h1>Volunteers</h1>
+<ul>
+    <li>First Name: <%= volunteer.volunteer_first_name %></li>
+    <li>Last Name: <%= volunteer.volunteer_last_name %></li>
+    <li>Age: <%= volunteer.age %></li>
+    <li>Date Started: <%= volunteer.date_started %></li>
+
+
+    <li>Assigned Shelter:
+        <ul>
+            <% for(var i=0; shelter.length > i; i++ ) { %>
+            <li><%= shelter[i].shelter_name %></li>
+            <% } %>
+        </ul>
+    </li>
+    <li>Assigned Animal:
+        <ul>
+            <% for(var j=0; animal.length > j; j++ ) { %>
+            <li><%= animal[j].animal_name %></li>
+            <% } %>
+        </ul>
+    </li>
+
+</ul>
+
+<a href="/volunteer/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>
