@@ -1,0 +1,38 @@
+<%- include("../includes/header.ejs", {title:"Clients - View All"}); %>
+
+<h1>Clients</h1>
+<a href="/client/add">Add A New Client</a> <br />
+
+<br />
+<font color="#9400d3"> This is where we keep track of our clients who come visit to any of our animal shelters.
+ These two columns are used to navigate and keep the names of our clients in the system.
+ The first column is a hyperlink that would display the information of the client showing
+ their first name, last name, phone number in case to reach them for any reasons, and
+ whether they adopted an animal or surrendered an animal. The column next to it is used
+ for either updating the information on the client or deleting their information. We keep
+ track of clients in case we have to reach them for any reason regarding the animal, or
+ in case they want to know more information about our various shelters, or even to adopt
+ a new animal.</font>
+
+<br/>
+<br/>
+<table border="1">
+    <tr><th>Client Name</th><th>Actions</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/client/?client_id=<%= result[i].client_id %>"><%= result[i].client_first_name %></a></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='/client/edit/?client_id=<%= result[i].client_id %>'">Edit</button>
+            <form action="/client/delete/" style="display:inline;">
+                <input type="hidden" name="client_id" id="client_id" value="<%= result[i].client_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+
+        </td>
+    </tr>
+    <% } %>
+</table>
+<br/>
+<a href="/">Back to the Home Page</a> <br/>
+
+<%- include("../includes/footer.ejs"); %>

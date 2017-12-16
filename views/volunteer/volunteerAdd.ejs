@@ -1,0 +1,49 @@
+<%- include("../includes/header.ejs", {title:"Add A New Volunteer"}); %>
+<h1>Add A New Volunteer</h1>
+<form action="/volunteer/insert" method="get">
+    <br/>
+    First Name: <input id="volunteer_first_name" name="volunteer_first_name" type="text" />
+    <br/>
+    Last Name: <input id="volunteer_last_name" name="volunteer_last_name" type="text" />
+    Age: <input id="age" name="age" type="text" />
+    <br/>
+    Date Started: <input id="date_started" name="date_started" type="text" />
+    <br />
+    <br />
+    Place assigned to Volunteer
+    <br />
+    <select id="shelter_id" name="shelter_id" multiple="multiple">
+        <% for(var i=0; shelter.length > i; i++ ) { %>
+        <option value="<%= shelter[i].shelter_id %>"><%= shelter[i].shelter_name %></option>
+        <% } %>
+    </select>
+    <br/>
+    Assigned Animal(s):
+    <br/>
+    <select id="animal_id" name="animal_id" multiple="multiple">
+        <% for(var i=0; animal.length > i; i++ ) { %>
+        <option value="<%= animal[i].animal_id %>"><%= animal[i].animal_name %></option>
+        <% } %>
+    </select>
+
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#shelter_id').multiselect();
+        });
+    </script>
+
+
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#animal_id').multiselect();
+        });
+    </script>
+
+
+    <br />
+    <input type="submit" />
+
+</form>
+<%- include("../includes/footer.ejs"); %>

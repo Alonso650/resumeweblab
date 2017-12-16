@@ -1,0 +1,35 @@
+<%- include("../includes/header.ejs", {title:"Add New Company"}); %>
+<h1>Add New Client</h1>
+<form action="/client/insert" method="get">
+    First Name: <input id="client_fist_name" name="client_first_name" type="text" />
+    <br/>
+    Last Name: <input id="client_last_name" name="client_last_name" type="text" />
+    <br/>
+    Phone Number: <input id="phone_number" name="phone_number" type="text"/>
+    <br/>
+    Adopting/Surrending: <input id="adopt_surrender" name="adopt_surrender" type="text"/>
+    <br/>
+    <br/>
+    Animal
+    <br/>
+    <select id="animal_id" name="animal_id" multiple="multiple">
+        <% for(var i=0; animal.length > i; i++) { %>
+            <option value="<%= animal[i].animal_id %>"><%= animal[i].animal_name%></option>
+         <% } %>
+
+    </select>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#animal_id').multiselect();
+        });
+    </script>
+
+
+    <br />
+    <input type="submit" />
+
+</form>
+<%- include("../includes/footer.ejs"); %>

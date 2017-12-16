@@ -1,0 +1,16 @@
+<%- include("../includes/header.ejs", {title:"Shelters - " + result[0].shelter_name}); %>
+<h1>Shelters</h1>
+<u1>
+    <li>Shelter Name: <%= result[0].shelter_name %></li>
+    <li>Address:
+        <ul>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <li><%= result[i].street + ', ' + result[i].state + ', ' + result[i].zip_code %></li>
+            <% }%>
+        </ul>
+    </li>
+</u1>
+
+<a href="/shelter/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

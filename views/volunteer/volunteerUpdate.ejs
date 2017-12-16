@@ -1,0 +1,67 @@
+<%- include("../includes/header.ejs", {title: "Update " + volunteer.volunteer_first_name}); %>
+
+<h1>Update <%= volunteer.volunteer_first_name%></h1>
+<form action="/volunteer/update" method="get">
+    <input type="hidden" id="volunteer_id" name="volunteer_id" value="<%= volunteer.volunteer_id %>">
+    First Name: <input id="volunteer_first_name" name="volunteer_first_name" type="text" value="<%= volunteer.volunteer_first_name%>"/>
+    Last Name: <input id="volunteer_last_name" name="volunteer_last_name" type="text" value="<%= volunteer.volunteer_last_name%>"/>
+    Age: <input id="age" name="age" type="text" value="<%= volunteer.age%>"/>
+    Date Entered: <input id="date_entered" name="date_entered" type="text" value="<%= volunteer.date_entered%>"/>
+
+
+    <br />
+    <br />
+    Volunteering Location: <br />
+    <select id="shelter_id" name="shelter_id" multiple="multiple">
+        <% for(var i=0; shelter.length >i; i++) {
+            var selected = "";
+            for(var j = 0; volunteers_at.length >j; j++) {
+                if (shelter[i].shelter_id == volunteers_at[j].shelter_id) {
+                    selected = "selected";
+                }
+            }
+        %>
+        <option value="<%= shelter[i].shelter_id %>" <%= selected %> ><%= shelter[i].shelter_name%></option>
+        <% } %>
+    </select>
+<br/>
+<br/>
+
+    Assigned Animal: <br />
+    <select id="animal_id" name="animal_id" multiple="multiple">
+        <% for(var i=0; animal.length >i; i++) {
+            var selected = "";
+            for(var j = 0; takes_care_of.length >j; j++) {
+                if (animal[i].animal_id == takes_care_of[j].animal_id) {
+                    selected = "selected";
+                }
+            }
+        %>
+        <option value="<%= animal[i].animal_id %>" <%= selected %> ><%= animal[i].animal_name%></option>
+        <% } %>
+    </select>
+
+    <br/>
+    <br/>
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#animal_id').multiselect();
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#animal_id').multiselect();
+        });
+    </script>
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>
+
+</html>

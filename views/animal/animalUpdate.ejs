@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {title: "Update " + animal.animal_name});%>
+
+<h1>Update <%= animal.animal_name%></h1>
+<form action="/animal/update" method="get">
+    <input type="hidden" id="animal_id" name="animal_id" value="<% animal.animal_id%>">
+    Name: <input id="animal_name" name="animal_name" type="text" value="<%= animal.animal_name%>"/>
+    Age: <input id="age" name="age" type="text" value="<%= animal.age%>"/>
+    Gender: <input id="gender" name="gender" type="text" value="<%= animal.gender%>"/>
+    Date Entered: <input id="date_entered" name="date_entered" type="text" value="<%= animal.date_entered%>"/>
+    <br />
+    <br />
+    Shelter <br />
+    <select id="shelter_id" name="shelter_id">
+        <% for(var i=0; shelter.length > i; i++) {
+            var selected = "";
+
+            if(shelter[i].animal_id != null) {
+                selected = "selected";
+            }
+        %>
+        <option value="<% shelter[i].shelter_id %>" <%= selected %> ><%= shelter[i].shelter_name%></option>
+        <% } %>
+    </select>
+
+
+
+    <br />
+
+    <input type="submit" />
+</form>
+
+<%- include("../includes/footer.ejs");%>
+
+</html>
