@@ -64,6 +64,7 @@ exports.update = function(params, callback) {
     });
 };
 
+
 exports.edit = function(school_id, callback) {
     var query = 'SELECT s.*, a.street, a.zip_code FROM school s ' +
         'LEFT JOIN address a ON s.address_id = a.address_id ' +

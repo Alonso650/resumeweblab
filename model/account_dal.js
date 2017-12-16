@@ -203,6 +203,7 @@ exports.edit = function(account_id, callback) {
     });
 };
 
+
 exports.getInfo = function(account_id, callback){
 
     var query = 'CALL account_getinfo(?)';

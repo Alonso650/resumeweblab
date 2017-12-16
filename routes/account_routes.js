@@ -17,7 +17,6 @@ router.get('/all', function(req, res) {
 
 });
 
-
 router.get('/', function(req, res){
     if(req.query.account_id == null){
         res.send('account_id is null');

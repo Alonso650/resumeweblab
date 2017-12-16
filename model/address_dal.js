@@ -12,6 +12,7 @@ exports.getAll = function(callback) {
     });
 };
 
+
 exports.getById = function(address_id, callback) {
     var query = 'SELECT * FROM address ' +
         'WHERE address_id = ?';

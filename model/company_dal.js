@@ -111,6 +111,7 @@ var companyAddressDeleteAll = function(company_id, callback){
 //export the same function so it can be used by external callers
 module.exports.companyAddressDeleteAll = companyAddressDeleteAll;
 
+
 exports.update = function(params, callback) {
     var query = 'UPDATE company SET company_name = ? WHERE company_id = ?';
     var queryData = [params.company_name, params.company_id];

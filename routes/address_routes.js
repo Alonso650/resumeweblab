@@ -61,6 +61,7 @@ router.get('/insert', function(req, res) {
     }
 });
 
+
 router.get('/edit', function(req, res) {
     if(req.query.address_id == null) {
         res.send('A address id is required');

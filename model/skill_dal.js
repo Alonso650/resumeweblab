@@ -47,6 +47,7 @@ exports.delete = function(skill_id, callback) {
 
 
 
+
 exports.update = function(params, callback){
     var query ='UPDATE skill SET skill_name = ?, description = ? WHERE skill_id = ?';
 

@@ -71,6 +71,7 @@ router.get('/insert', function(req, res) {
 
 
 
+
 router.get('/edit', function(req, res) {
     if(req.query.skill_id == null) {
         res.send('A skill id is required');

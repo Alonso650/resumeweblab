@@ -81,6 +81,9 @@ router.get('/edit2', function(req,res) {
     }
 });
 
+
+
+
 router.get('/edit', function(req, res) {
     if(req.query.school_id == null) {
         res.send('A school id is required');
