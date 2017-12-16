@@ -47,7 +47,7 @@ router.get('/add', function(req, res) {
 });
 
 // View the school for the given id
-router.get('/insert', function(req,res) {
+router.get('/insert', function(req, res) {
     // simple validation
     if(req.query.school_name == null) {
         res.send('school Name must be provided.');
@@ -70,7 +70,7 @@ router.get('/insert', function(req,res) {
     }
 });
 
-router.get('/edit', function(req,res) {
+router.get('/edit2', function(req,res) {
     if(req.query.school_id == null) {
         res.send('A school id is required');
     }
@@ -81,7 +81,7 @@ router.get('/edit', function(req,res) {
     }
 });
 
-router.get('/edit2', function(req, res) {
+router.get('/edit', function(req, res) {
     if(req.query.school_id == null) {
         res.send('A school id is required');
     }

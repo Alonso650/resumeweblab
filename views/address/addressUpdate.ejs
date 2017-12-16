@@ -2,18 +2,14 @@
 
 <h1>Update <%= address.street%></h1>
 <form action="/address/update" method="get">
-    Address St: <input id="street" name="street" type="text" value="<%= address.street %>"/>
+    <input type="hidden" id="address_id" name="address_id" value="<%= address.address_id%>">
+
+    Street: <input id="street" name="street" type="text" value="<%= address.street %>"/>
     <br/>
     <br/>
     Zipcode: <input id="zip_code" name="zip_code" type="text" value="<%= address.zip_code%>"/>
 
 
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#address_id').multiselect();
-        });
-    </script>
 
     <br/>
 
